@@ -112,7 +112,7 @@ covid-probability-app/
 L'utilisateur saisit une séquence de symptômes dans le champ prévu (ex. : `1,0,1,1,0,0`).
 
 <p align="center">
-  <img src="résultats/page.png" width="600">
+  <img src="resultats/page.png" width="600">
 </p>
 
 ---
@@ -122,7 +122,7 @@ L'utilisateur saisit une séquence de symptômes dans le champ prévu (ex. : `1,
 Si la probabilité estimée est **inférieure à 50 %**, l’application indique que le patient est **peu susceptible d’être infecté**.
 
 <p align="center">
-  <img src="résultats/neg.png" width="600">
+  <img src="resultats/neg.png" width="600">
 </p>
 
 > ✅ Interprétation : Le nombre de symptômes est faible → faible probabilité d’infection.
@@ -134,7 +134,7 @@ Si la probabilité estimée est **inférieure à 50 %**, l’application indique
 Si la probabilité estimée est **supérieure à 50 %**, l’application suggère une **forte probabilité d'infection**.
 
 <p align="center">
-  <img src="résultats/pos.png" width="600">
+  <img src="resultats/pos.png" width="600">
 </p>
 
 > ⚠️ Interprétation : Plusieurs symptômes présents → probabilité élevée → cas suspect à tester.
