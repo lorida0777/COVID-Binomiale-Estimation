@@ -10,7 +10,7 @@ st.write("📂 Chemin courant :", os.getcwd())
 # 📊 Chargement des données
 @st.cache_data
 def load_data():
-    df = pd.read_csv("C:\INSI\cours\Proba_avancé\COVID19_symptoms.csv")
+    df = pd.read_csv("COVID19_symptoms.csv")
 
     # Nettoyage de la colonne "Tiredness"
     if df["Tiredness"].dtype == object:
