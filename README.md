@@ -1,4 +1,4 @@
-````markdown
+
 # 🦠 Estimation de Probabilité COVID-19 à partir de Symptômes
 
 Ce projet permet à un utilisateur de cocher des symptômes cliniques et d'obtenir une estimation de la probabilité d'être atteint du COVID-19, à l'aide d'un modèle probabiliste basé sur la loi de Bayes.
