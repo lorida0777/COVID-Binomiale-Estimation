@@ -107,7 +107,39 @@ covid-probability-app/
    - 📈 Une **représentation graphique** de la distribution
 3. Interprétez les résultats en fonction d’un seuil (par ex. `p > 0.5` → suspect COVID)
 ---
+## 📄 Page 1 – Accueil de l’application
 
+L'utilisateur saisit une séquence de symptômes dans le champ prévu (ex. : `1,0,1,1,0,0`).
+
+<p align="center">
+  <img src="résultats/page.png" width="600">
+</p>
+
+---
+
+## 🟢 Page 2 – Résultat : COVID négatif (probabilité < 0.5)
+
+Si la probabilité estimée est **inférieure à 50 %**, l’application indique que le patient est **peu susceptible d’être infecté**.
+
+<p align="center">
+  <img src="résultats/neg.png" width="600">
+</p>
+
+> ✅ Interprétation : Le nombre de symptômes est faible → faible probabilité d’infection.
+
+---
+
+## 🔴 Page 3 – Résultat : COVID positif (probabilité > 0.5)
+
+Si la probabilité estimée est **supérieure à 50 %**, l’application suggère une **forte probabilité d'infection**.
+
+<p align="center">
+  <img src="résultats/pos.png" width="600">
+</p>
+
+> ⚠️ Interprétation : Plusieurs symptômes présents → probabilité élevée → cas suspect à tester.
+
+---
 
 ## ⚙️ Installation locale (optionnel)
 
