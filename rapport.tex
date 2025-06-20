@@ -1,0 +1,98 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\title{Concepts mathématiques – Estimation de probabilité de COVID-19 à partir de symptômes}
+\author{ANDRIATSIFERANA No Kanto Lorida}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{1. Modélisation du problème}
+
+On souhaite estimer la probabilité qu’un patient soit positif au COVID-19, étant donné les symptômes qu’il présente.
+
+C’est un problème de classification binaire :
+\begin{itemize}
+    \item Classe 1 : \textbf{COVID Positif} ($y = 1$)
+    \item Classe 0 : \textbf{COVID Négatif} ($y = 0$)
+\end{itemize}
+
+Chaque symptôme est une variable binaire (présent ou absent), représentée dans un vecteur $\mathbf{x} = (x_1, x_2, ..., x_n)$.
+
+\section*{2. Hypothèse : modèle de Naive Bayes}
+
+Nous utilisons le théorème de Bayes :
+\[
+P(y=1 \mid \mathbf{x}) = \frac{P(\mathbf{x} \mid y=1) \cdot P(y=1)}{P(\mathbf{x})}
+\]
+
+Puisque $P(\mathbf{x})$ est commun à toutes les classes, on peut comparer uniquement les numérateurs :
+\[
+P(y=1 \mid \mathbf{x}) \propto P(y=1) \cdot \prod_{i=1}^n P(x_i \mid y=1)
+\]
+\[
+P(y=0 \mid \mathbf{x}) \propto P(y=0) \cdot \prod_{i=1}^n P(x_i \mid y=0)
+\]
+
+\section*{3. Estimation des probabilités conditionnelles}
+
+À partir du jeu de données :
+\begin{itemize}
+    \item $P(y=1)$ : proportion de cas positifs
+    \item $P(x_i=1 \mid y=1)$ : fréquence du symptôme $i$ chez les cas positifs
+    \item $P(x_i=0 \mid y=1) = 1 - P(x_i=1 \mid y=1)$
+\end{itemize}
+
+Pour éviter les divisions par zéro, on applique un lissage de Laplace :
+\[
+P(x_i = 1 \mid y) = \frac{n_i + 1}{n + 2}
+\]
+
+\section*{4. Calcul pratique : log-vraisemblance}
+
+Pour éviter les sous-flux numériques, on calcule en logarithmes :
+\[
+\log P(y=1 \mid \mathbf{x}) = \log P(y=1) + \sum_{i=1}^n \log P(x_i \mid y=1)
+\]
+\[
+\log P(y=0 \mid \mathbf{x}) = \log P(y=0) + \sum_{i=1}^n \log P(x_i \mid y=0)
+\]
+
+Ensuite, on applique la normalisation log-softmax :
+\[
+P(y=1 \mid \mathbf{x}) = \frac{e^{\log P_1}}{e^{\log P_1} + e^{\log P_0}}
+\]
+
+\section*{5. Interprétation des résultats}
+
+\begin{itemize}
+    \item Plus un utilisateur coche de symptômes fréquents chez les cas positifs, plus la probabilité estimée augmente.
+    \item Le score final est une probabilité entre 0 \% et 100 \%, facile à interpréter.
+    \item On applique un seuil simple (ex. 50\%) pour alerter ou rassurer l’utilisateur.
+\end{itemize}
+
+\section*{6. Exemple concret}
+
+Symptômes cochés : Toux sèche, Fièvre, Perte de goût.
+
+\begin{itemize}
+    \item $P(\text{Toux sèche} \mid y=1) = 0{,}7$
+    \item $P(\text{Fièvre} \mid y=1) = 0{,}8$
+    \item $P(\text{Perte de goût} \mid y=1) = 0{,}75$
+\end{itemize}
+
+Calcul :
+\[
+\log P(y=1) + \log(0{,}7) + \log(0{,}8) + \log(0{,}75)
+\]
+Et de même pour $y=0$, puis normalisation.
+
+\end{document}
