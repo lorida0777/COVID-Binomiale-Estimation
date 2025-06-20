@@ -109,7 +109,7 @@ covid-probability-app/
 ---
 ## 📄 Page 1 – Accueil de l’application
 
-L'utilisateur saisit une séquence de symptômes dans le champ prévu (ex. : `1,0,1,1,0,0`).
+L'utilisateur sélectionne les symptômes présents en **cochant les cases** correspondantes (ex. : toux, fièvre, fatigue...).
 
 <p align="center">
   <img src="resultats/page.png" width="600">
