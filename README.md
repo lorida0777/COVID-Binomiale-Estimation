@@ -20,17 +20,41 @@ Estimer la probabilité d'infection COVID-19 en fonction des symptômes renseign
 
 ---
 
-## 🧠 Méthode utilisée
+## 📊 Modèle statistique utilisé
 
-- **Modèle :** Naive Bayes binaire
-- **Principe :**
-  - Chaque symptôme est une variable binaire (présent ou absent).
-  - Estimation de :
-    \[
-    P(\text{COVID} \mid \text{symptômes}) = \frac{P(\text{symptômes} \mid \text{COVID}) \cdot P(\text{COVID})}{P(\text{symptômes})}
-    \]
-  - Hypothèse d’indépendance entre les symptômes (Naive Bayes)
-  - Lissage de Laplace appliqué pour éviter `log(0)`
+Chaque symptôme est modélisé comme une **épreuve de Bernoulli** :  
+Soit `X_i = 1` si le symptôme *i* est présent, `0` sinon.  
+La somme `S = X₁ + X₂ + ... + Xₙ` suit une **loi binomiale** :  
+**S ~ B(n, p)** avec `n = nombre de symptômes` et `p = probabilité d’être malade si un symptôme est présent`.
+
+## 📊 Méthode statistique utilisée
+
+L'application repose sur la **loi binomiale** pour modéliser la probabilité qu'un patient soit infecté en fonction de la présence de plusieurs symptômes.
+
+### 🔍 Hypothèse
+
+- Chaque symptôme est considéré comme une épreuve indépendante de type **présent / absent**.
+- La présence d’un symptôme augmente la probabilité que le patient soit infecté.
+- Soit :
+  - `n` : nombre total de symptômes étudiés
+  - `k` : nombre de symptômes présents chez un patient
+  - `p` : probabilité individuelle qu’un symptôme indique le COVID (fixée selon le modèle ou estimée)
+
+### 📐 Modélisation
+
+On modélise le nombre de symptômes présents `k` par une variable aléatoire suivant une loi binomiale :
+
+> **X ~ B(n, p)**
+
+L'application utilise la fonction de répartition ou de masse de la loi binomiale pour :
+
+- Calculer la **probabilité que `k` symptômes soient présents**
+- Estimer la **probabilité que le patient soit effectivement infecté**, à partir du nombre de symptômes déclarés
+
+### 📌 Interprétation
+
+Une forte valeur de `k` (plusieurs symptômes présents) donne une probabilité plus élevée que le patient soit positif.  
+La visualisation permet de situer `k` sur la courbe de la distribution binomiale.
 
 ---
 
@@ -70,7 +94,7 @@ covid-probability-app/
 
 ## 🚀 Accès à l'application
 
-👉 [🧪 Lancer l'application en ligne]([https://YOUR-APP-URL.streamlit.app](https://covid-binomiale-estimation.streamlit.app/))  
+👉 [🧪 Lancer l'application en ligne](https://covid-binomiale-estimation.streamlit.app/)
 
 ---
 
