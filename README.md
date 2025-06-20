@@ -67,8 +67,41 @@ covid-probability-app/
 └── README.md              # Ce fichier d'explication
 ```
 
+
+## 🚀 Accès à l'application
+
+👉 [🧪 Lancer l'application en ligne]([https://YOUR-APP-URL.streamlit.app](https://covid-binomiale-estimation.streamlit.app/))  
+
 ---
 
+## 💡 Exemple d’utilisation
+
+1. Entrez une séquence de symptômes sous forme binaire ou de scores (par ex. `1,0,1,1,0,0`) dans le champ prévu.
+2. L’application calcule :
+   - ✅ Le **nombre total de symptômes positifs**
+   - 📊 La **probabilité d’infection estimée** selon la loi binomiale
+   - 📈 Une **représentation graphique** de la distribution
+3. Interprétez les résultats en fonction d’un seuil (par ex. `p > 0.5` → suspect COVID)
+---
+
+
+## ⚙️ Installation locale (optionnel)
+
+```bash
+# Clonez le dépôt
+git clone https://github.com/lorida0777/COVID-Binomiale-Estimation.git
+cd COVID-Binomiale-Estimation/covid-probability-app
+
+# Créez un environnement virtuel (optionnel)
+python -m venv venv
+source venv/bin/activate  # ou venv\Scripts\activate sur Windows
+
+# Installez les dépendances
+pip install -r ../requirements.txt
+
+# Lancez l'app
+streamlit run covid.py
+````
 ## ✍️ Auteur
 
 * **Nom :** \[ANDRIATSIFERANA No Kanto Lorida]
